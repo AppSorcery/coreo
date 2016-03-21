@@ -1,0 +1,102 @@
+variables:
+    VPC_NAME:
+        required: true
+        description: the name of the VPC
+        default: test-vpc
+    VPC_OCTETS:
+        required: true
+        description: the /16 net of the VPC to look for - i.e 123.123.0.0
+        default: 10.11.0.0
+    PRIVATE_ROUTE_NAME:
+        required: true
+        description: the name to give to the private route
+        default: test-private-route
+    PRIVATE_SUBNET_NAME:
+        required: true
+        description: the cloudcoreo name of the private vpc subnets
+        default: test-private-subnet
+    NAT_SG_NAME:
+        required: true
+        description: the name of the security group to create for the NAT
+        default: NAT-sg
+    NAT_INGRESS_PORTS:
+        required: true
+        description: allowed ingress ports on the nat
+        default:
+            - 0..65535
+        type: array
+    NAT_INGRESS_CIDRS:
+        required: true
+        description: allowed ingress network cidrs on the nat
+        default:
+            - 0.0.0.0/0
+        type: array
+    NAT_EGRESS_PORTS:
+        required: true
+        description: allowed ingress ports on the nat
+        default:
+            - 0..65535
+        type: array
+    NAT_EGRESS_CIDRS:
+        required: true
+        description: allowed ingress network cidrs on the nat
+        default:
+            - 0.0.0.0/0
+        type: array
+    NAT_NAME:
+        required: true
+        description: the name of the nat instance
+        default: NAT
+    NAT_SIZE:
+        required: true
+        description: the instance size of the nat
+        default: t2.small
+    NAT_GROUP_SIZE_MIN:
+        required: true
+        description: the miniumum number of NAT instances to launch
+        default: 1
+        type: number
+    NAT_GROUP_SIZE_MAX:
+        required: true
+        description: the maximum number of NAT instances to launch
+        default: 1
+        type: number
+    PUBLIC_SUBNET_NAME:
+        required: true
+        description: the cloudcoreo name of the public vpc subnets
+        default: test-public-subnet
+    PUBLIC_ROUTE_NAME:
+        required: true
+        description: the name to give to the public route
+        default: test-public-route
+    MONITORINTERVAL:
+        required: true
+        description: time in seconds between route checks
+        default: 20
+        type: number
+    PRIVATE_SUBNETS:
+        default: "STACK::coreo_aws_vpc_subnet.test-private-subnet.subnet_ids"
+        required: true
+        descripiton: comma seperated list of the private subnet ids
+    NAT_AMI:
+        description: the ami id of the nat
+        switch: "INSTANCE::region"
+        cases:
+            us-east-1: ami-303b1458
+            us-west-1: ami-ada746e9
+            us-west-2: ami-69ae8259
+            eu-west-1: ami-ef76e898
+            eu-central-1: ami-1e073a03
+            ap-southeast-1: ami-1a9dac48
+            ap-northeast-1: ami-11dc2a11
+            ap-southeast-2: ami-43ee9e79
+            sa-east-1: ami-63fa417e
+        type: case
+    NAT_KEY:
+        required: false
+        description: The name of the key to use for the nat box
+        default: ""
+    LOGFILE:
+        required: false
+        description: ha-nat log file
+        default: /var/log/ha-nat.log

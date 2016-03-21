@@ -1,0 +1,6 @@
+[submodule "extends"]
+	path = extends
+	url = git@github.com:CloudCoreo/vpc-network-only.git
+[submodule "stack-servers-nat/extends"]
+	path = stack-servers-nat/extends
+	url = git@github.com:CloudCoreo/servers-nat.git
