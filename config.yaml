@@ -80,7 +80,7 @@ variables:
         descripiton: comma seperated list of the private subnet ids
     NAT_AMI:
         description: the ami id of the nat
-        switch: "INSTANCE::region"
+        switch: "PLAN::region"
         cases:
             us-east-1: ami-303b1458
             us-west-1: ami-ada746e9
